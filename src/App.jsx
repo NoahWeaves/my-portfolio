@@ -1,8 +1,27 @@
 import React, { useState } from 'react';
 import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+import ProjectCarousel from './components/ProjectCarousel';
+import ProjectsSection from './components/ProjectsSection';
+import TiltingGridHero from './components/TiltingGridHero';
+import InteractiveGrid from './components/InteractiveGrid';
+import GridVisualization from './components/GridVisualization';
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [layers, setLayers] = useState([
+    { id: 0, cells: [] },
+    { id: 1, cells: [] }
+  ]);
+
+  const handleLayerUpdate = ({ layerId, cells }) => {
+    setLayers(prevLayers => 
+      prevLayers.map(layer => 
+        layer.id === layerId 
+          ? { ...layer, cells } 
+          : layer
+      )
+    );
+  };
 
   // Sample project data - replace with your own
   const projects = [
@@ -29,7 +48,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm">
+      <nav className="bg-black text-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
@@ -38,9 +57,9 @@ const Portfolio = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="text-gray-700 hover:text-gray-900">About</a>
-              <a href="#projects" className="text-gray-700 hover:text-gray-900">Projects</a>
-              <a href="#contact" className="text-gray-700 hover:text-gray-900">Contact</a>
+              <a href="#about" className="text-slate-200 hover:text-white">About</a>
+              <a href="#projects" className="text-slate-200 hover:text-white">Projects</a>
+              <a href="#contact" className="text-slate-200 hover:text-white">Contact</a>
             </div>
 
             {/* Mobile Navigation Button */}
@@ -68,18 +87,10 @@ const Portfolio = () => {
       </nav>
 
       {/* Hero Section */}
-      <div className="bg-white">
-        <div className="max-w-6xl mx-auto px-4 py-16 sm:py-24">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-              Welcome to My Portfolio
-            </h2>
-            <p className="mt-4 text-xl text-gray-600">
-              I'm a developer passionate about building amazing web experiences.
-            </p>
-          </div>
-        </div>
-      </div>
+      <InteractiveGrid 
+        layerId={0}
+        onCellUpdate={handleLayerUpdate}
+      />
 
       {/* About Section */}
       <section id="about" className="py-16 bg-gray-50">
@@ -99,36 +110,23 @@ const Portfolio = () => {
       <section id="projects" className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">My Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span 
-                        key={tagIndex}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProjectCarousel projects={projects} />
+        </div>
+      </section>
+
+      {/* Interactive Grid Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Interactive Grid</h2>
+          <InteractiveGrid 
+            layerId={1}
+            onCellUpdate={handleLayerUpdate}
+          />
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 bg-gray-50">
+      <section id="contact" className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Get In Touch</h2>
           <div className="flex justify-center space-x-6">
@@ -145,11 +143,16 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* 3D Visualization */}
+      <div className="fixed bottom-8 right-8 w-96 h-96 bg-black rounded-lg shadow-lg overflow-hidden">
+        <GridVisualization layers={layers} />
+      </div>
+
       {/* Footer */}
       <footer className="bg-white">
         <div className="max-w-6xl mx-auto px-4 py-8">
           <p className="text-center text-gray-600">
-            © {new Date().getFullYear()} Your Name. All rights reserved.
+            © {new Date().getFullYear()} Noah Weaver. All rights reserved.
           </p>
         </div>
       </footer>
