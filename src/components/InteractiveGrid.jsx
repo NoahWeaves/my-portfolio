@@ -106,7 +106,7 @@ const InteractiveGrid = ({
       style={{ perspective: '1000px' }}
     >
       <div 
-        className="absolute inset-0 transition-transform duration-200 ease-out"
+        className="absolute -inset-10 transition-transform duration-200 ease-out"
         style={{
           transform: `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
           transformStyle: 'preserve-3d',
@@ -133,7 +133,51 @@ const InteractiveGrid = ({
               onClick={() => handleCellClick(row, col)}
             />
           ))}
+          
+          {/* X-Axis indicator */}
+          <line 
+            x1={offsetX} 
+            y1={offsetY + gridHeight/2} 
+            x2={offsetX + gridWidth} 
+            y2={offsetY + gridHeight/2} 
+            stroke="red" 
+            strokeWidth="2" 
+          />
+          
+          {/* Y-Axis indicator */}
+          <line 
+            x1={offsetX + gridWidth/2} 
+            y1={offsetY} 
+            x2={offsetX + gridWidth/2} 
+            y2={offsetY + gridHeight} 
+            stroke="green" 
+            strokeWidth="2" 
+          />
+          
+          {/* Center point marker */}
+          <circle 
+            cx={offsetX + gridWidth/2} 
+            cy={offsetY + gridHeight/2} 
+            r={cellSize/2} 
+            fill="yellow" 
+          />
         </svg>
+      </div>
+      
+      {/* Coordinate system legend */}
+      <div className="absolute bottom-2 right-2 bg-black/70 p-2 text-xs text-white z-10 rounded">
+        <div className="flex items-center mb-1">
+          <div className="w-3 h-3 bg-red-500 mr-1"></div>
+          <span>X-Axis</span>
+        </div>
+        <div className="flex items-center mb-1">
+          <div className="w-3 h-3 bg-green-500 mr-1"></div>
+          <span>Y-Axis</span>
+        </div>
+        <div className="flex items-center">
+          <div className="w-3 h-3 bg-yellow-500 mr-1"></div>
+          <span>Center</span>
+        </div>
       </div>
     </div>
   );

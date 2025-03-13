@@ -24,6 +24,11 @@ const GridVisualization = ({
     scene.background = new THREE.Color(0x000000);
     sceneRef.current = scene;
 
+    // Grid center coordinates
+    const gridCenterX = gridSize.cols / 2;
+    const gridCenterZ = gridSize.rows / 2;
+    const layerHeight = Math.max(1, layers.length / 2);
+
     // Setup camera
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -32,14 +37,13 @@ const GridVisualization = ({
       1000
     );
 
-    // Position camera closer to view the grid
-    const maxDimension = Math.max(gridSize.cols, gridSize.rows);
+    // Position camera to center directly on the grid
     camera.position.set(
-      gridSize.cols / 2, 
-      maxDimension / 3 + layers.length / 2,  // Lower height
-      maxDimension * 0.8                    // Closer distance from grid
+      gridCenterX,                        // Directly above center X
+      gridSize.rows * 0.8,                // Increased height for better view of larger blocks
+      gridCenterZ - gridSize.rows * 0.5   // Adjusted Z position for better angle with corrected orientation
     );
-    camera.lookAt(gridSize.cols / 2, layers.length / 2, gridSize.rows / 2);
+    camera.lookAt(gridCenterX, layerHeight / 2, gridCenterZ);
     cameraRef.current = camera;
 
     // Setup renderer
@@ -49,16 +53,21 @@ const GridVisualization = ({
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Add controls
+    // Add controls - ensure they're centered exactly on the grid
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.target.set(gridSize.cols / 2, layers.length / 3, gridSize.rows / 2); // Lower target point
     
-    // Set control limits to keep the view reasonable
-    controls.minDistance = 5;
-    controls.maxDistance = maxDimension * 1.5;
-    controls.maxPolarAngle = Math.PI / 1.5; // Limit how far below the grid you can orbit
+    // Set orbit center exactly to grid center
+    controls.target.set(gridCenterX, layerHeight / 2, gridCenterZ);
+    
+    // Disable zooming but allow rotation
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.minPolarAngle = Math.PI / 8; // Slightly higher minimum angle
+    controls.maxPolarAngle = Math.PI / 2.5; // Slightly lower maximum angle
+    controls.minAzimuthAngle = -Math.PI / 2.5; // Limit horizontal rotation
+    controls.maxAzimuthAngle = Math.PI / 2.5; // Limit horizontal rotation
     controlsRef.current = controls;
 
     // Add ambient light
@@ -77,7 +86,7 @@ const GridVisualization = ({
       0x555555,
       0x333333
     );
-    gridHelper.position.set(gridSize.cols / 2, 0, gridSize.rows / 2);
+    gridHelper.position.set(gridCenterX, 0, gridCenterZ);
     scene.add(gridHelper);
 
     // Handle resize
@@ -117,7 +126,7 @@ const GridVisualization = ({
       if (renderer) renderer.dispose();
       if (controls) controls.dispose();
     };
-  }, [gridSize.cols, gridSize.rows]);
+  }, [gridSize.cols, gridSize.rows, layers.length]);
 
   // Update cubes when layers change
   useEffect(() => {
@@ -129,8 +138,8 @@ const GridVisualization = ({
     });
     cubesRef.current = [];
 
-    // Create cube geometry and material - larger cubes
-    const geometry = new THREE.BoxGeometry(0.95, 0.95, 0.95); // Larger cubes with smaller gaps
+    // Create cube geometry and material - much larger cubes
+    const geometry = new THREE.BoxGeometry(1.8, 1.8, 1.8); // Significantly larger cubes
     
     // Add cubes for each active cell in each layer
     layers.forEach((layer, layerIndex) => {
@@ -139,17 +148,18 @@ const GridVisualization = ({
         const hue = (layerIndex / layers.length) * 360;
         const material = new THREE.MeshPhongMaterial({
           color: new THREE.Color(`hsl(${hue}, 80%, 70%)`),
-          transparent: true,
-          opacity: 0.8,
+          transparent: false,
+          opacity: 1.0,
         });
         
         const cube = new THREE.Mesh(geometry, material);
         
-        // Position cube with y-up orientation
+        // Position cube with y-up orientation and translate to match center coordinates
+        // This offset ensures the grid center in the visualization matches the interactive grid
         cube.position.set(
-          col,                  // X position
-          layerIndex + 0.5,     // Y position (stacked by layer)
-          row                   // Z position
+          col,                       // X position
+          layerIndex + 0.5,          // Y position (stacked by layer)
+          gridSize.rows - 1 - row    // Inverted Z position to match orientation and correct quadrant
         );
 
         sceneRef.current.add(cube);

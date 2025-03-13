@@ -78,12 +78,12 @@ const InteractiveGrid = ({
         style={{
           transform: `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
           transformStyle: 'preserve-3d',
-          top: '-25%',
-          left: '-25%',
-          right: '-25%',
-          bottom: '-25%',
-          width: '150%',
-          height: '150%'
+          top: '-35%',
+          left: '-35%',
+          right: '-35%',
+          bottom: '-35%',
+          width: '170%',
+          height: '170%'
         }}
       >
         <svg 
