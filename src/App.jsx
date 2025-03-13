@@ -83,11 +83,11 @@ const Portfolio = () => {
         )}
       </nav>
 
-      {/* Hero Grid Section - Shorter as requested */}
+      {/* Hero Grid Section - Taller */}
       <section className="pt-16 border-b border-gray-800">
-        <div className="h-48 relative overflow-hidden">
+        <div className="h-64 relative overflow-hidden">
           <InteractiveGrid 
-            gridSize={{ cols: 30, rows: 8 }}  // Fewer rows to make it shorter
+            gridSize={{ cols: 30, rows: 8 }}
             layerId={0}
             onCellUpdate={handleLayerUpdate}
             className="w-full h-full"
@@ -198,7 +198,7 @@ const Portfolio = () => {
               </div>
             </div>
           </div>
-          <div className="h-96 relative overflow-hidden">
+          <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
               gridSize={{ cols: 20, rows: 15 }}
               layerId={1}
@@ -242,7 +242,7 @@ const Portfolio = () => {
       {/* Creative Section - Grid Block */}
       <section id="creative" className="border-b border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="h-96 relative overflow-hidden">
+          <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
               gridSize={{ cols: 20, rows: 15 }}
               layerId={2}
@@ -309,8 +309,12 @@ const Portfolio = () => {
             Interact with the grids above to see your creation visualized in 3D space
           </p>
         </div>
-        <div className="h-96 w-full">
-          <GridVisualization layers={layers} className="w-full h-full" />
+        <div className="h-120 w-full">
+          <GridVisualization 
+            layers={layers} 
+            className="w-full h-full" 
+            gridSize={{ cols: 30, rows: 20 }}
+          />
         </div>
       </section>
 

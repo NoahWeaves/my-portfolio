@@ -8,9 +8,43 @@ const InteractiveGrid = ({
 }) => {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [activeCells, setActiveCells] = useState(new Set());
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const containerRef = useRef(null);
   
-  const maxTiltAngle = 20;
+  const maxTiltAngle = 15; // Reduced tilt angle for a closer view
+
+  // Calculate cell size based on the smaller dimension to ensure square cells
+  // Using a scaling factor of 1.2 to make cells larger than the default size
+  const cellSize = Math.min(
+    dimensions.width / gridSize.cols,
+    dimensions.height / gridSize.rows
+  ) * 1.2;
+
+  // Calculate the grid's actual width and height based on cell size
+  const gridWidth = cellSize * gridSize.cols;
+  const gridHeight = cellSize * gridSize.rows;
+
+  // Calculate centering offsets
+  const offsetX = (dimensions.width - gridWidth) / 2;
+  const offsetY = (dimensions.height - gridHeight) / 2;
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        setDimensions({
+          width: containerRef.current.clientWidth,
+          height: containerRef.current.clientHeight
+        });
+      }
+    };
+
+    // Initialize dimensions
+    updateDimensions();
+    
+    // Update dimensions on resize
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -57,47 +91,40 @@ const InteractiveGrid = ({
   const cells = [];
   for (let row = 0; row < gridSize.rows; row++) {
     for (let col = 0; col < gridSize.cols; col++) {
-      const x = (col / gridSize.cols) * 100;
-      const y = (row / gridSize.rows) * 100;
-      const width = 100 / gridSize.cols;
-      const height = 100 / gridSize.rows;
+      const x = offsetX + col * cellSize;
+      const y = offsetY + row * cellSize;
       const isActive = activeCells.has(`${row}-${col}`);
       
-      cells.push({ row, col, x, y, width, height, isActive });
+      cells.push({ row, col, x, y, size: cellSize, isActive });
     }
   }
 
   return (
     <div 
       ref={containerRef}
-      className={`relative w-full h-screen overflow-hidden bg-black ${className}`}
+      className={`relative w-full h-full overflow-hidden bg-black ${className}`}
       style={{ perspective: '1000px' }}
     >
       <div 
-        className="absolute transition-transform duration-200 ease-out"
+        className="absolute inset-0 transition-transform duration-200 ease-out"
         style={{
           transform: `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
           transformStyle: 'preserve-3d',
-          top: '-25%',
-          left: '-25%',
-          right: '-25%',
-          bottom: '-25%',
-          width: '150%',
-          height: '150%'
         }}
       >
         <svg 
           className="absolute inset-0 w-full h-full"
           style={{ transform: 'translateZ(0px)' }}
+          preserveAspectRatio="xMidYMid meet"
         >
           {/* Render cells as SVG rectangles */}
-          {cells.map(({ row, col, x, y, width, height, isActive }) => (
+          {cells.map(({ row, col, x, y, size, isActive }) => (
             <rect
               key={`${row}-${col}`}
-              x={`${x}%`}
-              y={`${y}%`}
-              width={`${width}%`}
-              height={`${height}%`}
+              x={x}
+              y={y}
+              width={size}
+              height={size}
               className={`
                 cursor-pointer transition-all duration-200
                 ${isActive ? 'fill-slate-200/40' : 'fill-transparent hover:fill-slate-200/20'}
