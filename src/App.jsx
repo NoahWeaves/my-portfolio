@@ -7,6 +7,10 @@ const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeAudio, setActiveAudio] = useState(null);
   const audioRefs = useRef({});
+  
+  // Define a consistent grid size to use across components
+  const gridSize = { cols: 30, rows: 20 };
+  
   const [layers, setLayers] = useState([
     { id: 0, cells: [] },  // Hero grid
     { id: 1, cells: [] },  // Technical grid
@@ -87,7 +91,7 @@ const Portfolio = () => {
       <section className="pt-16 border-b border-gray-800">
         <div className="h-64 relative overflow-hidden">
           <InteractiveGrid 
-            gridSize={{ cols: 30, rows: 8 }}
+            gridSize={gridSize}
             layerId={0}
             onCellUpdate={handleLayerUpdate}
             className="w-full h-full"
@@ -200,7 +204,7 @@ const Portfolio = () => {
           </div>
           <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
-              gridSize={{ cols: 20, rows: 15 }}
+              gridSize={gridSize}
               layerId={1}
               onCellUpdate={handleLayerUpdate}
               className="w-full h-full"
@@ -244,7 +248,7 @@ const Portfolio = () => {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
-              gridSize={{ cols: 20, rows: 15 }}
+              gridSize={gridSize}
               layerId={2}
               onCellUpdate={handleLayerUpdate}
               className="w-full h-full"
@@ -308,12 +312,15 @@ const Portfolio = () => {
           <p className="text-gray-400 text-sm mt-2">
             Interact with the grids above to see your creation visualized in 3D space
           </p>
+          <p className="text-gray-500 text-xs mt-1">
+            Red = X-axis, Green = Y-axis, Blue = Z-axis (height)
+          </p>
         </div>
         <div className="h-120 w-full">
           <GridVisualization 
             layers={layers} 
             className="w-full h-full" 
-            gridSize={{ cols: 30, rows: 20 }}
+            gridSize={gridSize}
           />
         </div>
       </section>

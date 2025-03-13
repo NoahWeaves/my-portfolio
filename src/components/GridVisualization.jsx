@@ -41,7 +41,7 @@ const GridVisualization = ({
     camera.position.set(
       gridCenterX,                        // Directly above center X
       gridSize.rows * 0.8,                // Increased height for better view of larger blocks
-      gridCenterZ - gridSize.rows * 0.5   // Adjusted Z position for better angle with corrected orientation
+      gridCenterZ + gridSize.rows * 0.5   // Adjusted Z position for better angle with corrected orientation
     );
     camera.lookAt(gridCenterX, layerHeight / 2, gridCenterZ);
     cameraRef.current = camera;
@@ -71,23 +71,18 @@ const GridVisualization = ({
     controlsRef.current = controls;
 
     // Add ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     scene.add(ambientLight);
 
     // Add directional light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
     directionalLight.position.set(10, 10, 10);
     scene.add(directionalLight);
 
-    // Add grid helper for reference
-    const gridHelper = new THREE.GridHelper(
-      Math.max(gridSize.cols, gridSize.rows),
-      Math.max(gridSize.cols, gridSize.rows),
-      0x555555,
-      0x333333
-    );
-    gridHelper.position.set(gridCenterX, 0, gridCenterZ);
-    scene.add(gridHelper);
+    // Add a secondary directional light from opposite side for more even lighting
+    const secondaryLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    secondaryLight.position.set(-10, 5, -10);
+    scene.add(secondaryLight);
 
     // Handle resize
     const handleResize = () => {
@@ -138,35 +133,56 @@ const GridVisualization = ({
     });
     cubesRef.current = [];
 
-    // Create cube geometry and material - much larger cubes
-    const geometry = new THREE.BoxGeometry(1.8, 1.8, 1.8); // Significantly larger cubes
+    // Create even larger cubes
+    const cubeSize = 2.0; // Large cube size
+    const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+    
+    // Half the cube dimension for offset
+    const halfCube = cubeSize / 2;
     
     // Add cubes for each active cell in each layer
     layers.forEach((layer, layerIndex) => {
       layer.cells.forEach(({ row, col }) => {
         // Generate a unique color based on the layer
-        const hue = (layerIndex / layers.length) * 360;
+        const hue = (layerIndex / Math.max(1, layers.length - 1)) * 360;
         const material = new THREE.MeshPhongMaterial({
           color: new THREE.Color(`hsl(${hue}, 80%, 70%)`),
-          transparent: false,
-          opacity: 1.0,
+          transparent: false, // Fully opaque cubes
+          specular: 0x111111,
+          shininess: 30
         });
         
         const cube = new THREE.Mesh(geometry, material);
         
-        // Position cube with y-up orientation and translate to match center coordinates
-        // This offset ensures the grid center in the visualization matches the interactive grid
+        // Position cube with offset in all three dimensions
         cube.position.set(
-          col,                       // X position
-          layerIndex + 0.5,          // Y position (stacked by layer)
-          gridSize.rows - 1 - row    // Inverted Z position to match orientation and correct quadrant
+          col + halfCube,       // X position + half cube size
+          halfCube + layerIndex * cubeSize, // Y position with half-cube offset from ground, stacking by full cube heights
+          row + halfCube        // Z position + half cube size
         );
 
         sceneRef.current.add(cube);
         cubesRef.current.push(cube);
       });
     });
-  }, [layers, isInitialized]);
+
+    // Add very subtle floor plane for depth perception
+    const floorGeometry = new THREE.PlaneGeometry(gridSize.cols * 2, gridSize.rows * 2);
+    const floorMaterial = new THREE.MeshBasicMaterial({ 
+      color: 0x111111,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.3
+    });
+    
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.rotation.x = Math.PI / 2; // Rotate to be horizontal
+    floor.position.set(gridSize.cols / 2, 0, gridSize.rows / 2);
+    
+    sceneRef.current.add(floor);
+    cubesRef.current.push(floor);
+
+  }, [layers, isInitialized, gridSize.cols, gridSize.rows]);
 
   return (
     <div 

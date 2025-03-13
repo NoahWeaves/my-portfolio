@@ -11,14 +11,14 @@ const InteractiveGrid = ({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const containerRef = useRef(null);
   
-  const maxTiltAngle = 15; // Reduced tilt angle for a closer view
+  const maxTiltAngle = 15; // Tilt angle for 3D effect
 
   // Calculate cell size based on the smaller dimension to ensure square cells
-  // Using a scaling factor of 1.2 to make cells larger than the default size
+  // Using a scaling factor of 1.5 to make cells larger
   const cellSize = Math.min(
     dimensions.width / gridSize.cols,
     dimensions.height / gridSize.rows
-  ) * 1.2;
+  ) * 1.5;
 
   // Calculate the grid's actual width and height based on cell size
   const gridWidth = cellSize * gridSize.cols;
@@ -117,6 +117,57 @@ const InteractiveGrid = ({
           style={{ transform: 'translateZ(0px)' }}
           preserveAspectRatio="xMidYMid meet"
         >
+          {/* Draw grid lines */}
+          <g className="grid-lines opacity-10">
+            {/* Vertical lines */}
+            {Array.from({ length: gridSize.cols + 1 }).map((_, i) => (
+              <line 
+                key={`vline-${i}`}
+                x1={offsetX + i * cellSize} 
+                y1={offsetY} 
+                x2={offsetX + i * cellSize} 
+                y2={offsetY + gridHeight}
+                stroke="#444" 
+                strokeWidth="1" 
+              />
+            ))}
+            
+            {/* Horizontal lines */}
+            {Array.from({ length: gridSize.rows + 1 }).map((_, i) => (
+              <line 
+                key={`hline-${i}`}
+                x1={offsetX} 
+                y1={offsetY + i * cellSize} 
+                x2={offsetX + gridWidth} 
+                y2={offsetY + i * cellSize}
+                stroke="#444" 
+                strokeWidth="1" 
+              />
+            ))}
+          </g>
+          
+          {/* Subtle X-Axis indicator */}
+          <line 
+            x1={offsetX} 
+            y1={offsetY + gridHeight/2} 
+            x2={offsetX + gridWidth} 
+            y2={offsetY + gridHeight/2} 
+            stroke="#666" 
+            strokeWidth="1.5" 
+            strokeDasharray="5,5"
+          />
+          
+          {/* Subtle Y-Axis indicator */}
+          <line 
+            x1={offsetX + gridWidth/2} 
+            y1={offsetY} 
+            x2={offsetX + gridWidth/2} 
+            y2={offsetY + gridHeight} 
+            stroke="#666" 
+            strokeWidth="1.5" 
+            strokeDasharray="5,5"
+          />
+          
           {/* Render cells as SVG rectangles */}
           {cells.map(({ row, col, x, y, size, isActive }) => (
             <rect
@@ -127,57 +178,13 @@ const InteractiveGrid = ({
               height={size}
               className={`
                 cursor-pointer transition-all duration-200
-                ${isActive ? 'fill-slate-200/40' : 'fill-transparent hover:fill-slate-200/20'}
-                stroke-slate-200/20
+                ${isActive ? 'fill-white/50 stroke-white/80' : 'fill-transparent hover:fill-white/20'}
+                stroke-white/30
               `}
               onClick={() => handleCellClick(row, col)}
             />
           ))}
-          
-          {/* X-Axis indicator */}
-          <line 
-            x1={offsetX} 
-            y1={offsetY + gridHeight/2} 
-            x2={offsetX + gridWidth} 
-            y2={offsetY + gridHeight/2} 
-            stroke="red" 
-            strokeWidth="2" 
-          />
-          
-          {/* Y-Axis indicator */}
-          <line 
-            x1={offsetX + gridWidth/2} 
-            y1={offsetY} 
-            x2={offsetX + gridWidth/2} 
-            y2={offsetY + gridHeight} 
-            stroke="green" 
-            strokeWidth="2" 
-          />
-          
-          {/* Center point marker */}
-          <circle 
-            cx={offsetX + gridWidth/2} 
-            cy={offsetY + gridHeight/2} 
-            r={cellSize/2} 
-            fill="yellow" 
-          />
         </svg>
-      </div>
-      
-      {/* Coordinate system legend */}
-      <div className="absolute bottom-2 right-2 bg-black/70 p-2 text-xs text-white z-10 rounded">
-        <div className="flex items-center mb-1">
-          <div className="w-3 h-3 bg-red-500 mr-1"></div>
-          <span>X-Axis</span>
-        </div>
-        <div className="flex items-center mb-1">
-          <div className="w-3 h-3 bg-green-500 mr-1"></div>
-          <span>Y-Axis</span>
-        </div>
-        <div className="flex items-center">
-          <div className="w-3 h-3 bg-yellow-500 mr-1"></div>
-          <span>Center</span>
-        </div>
       </div>
     </div>
   );
