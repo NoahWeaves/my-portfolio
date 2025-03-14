@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Github, Linkedin, Mail, Menu, X, Music, Gamepad2, Book } from 'lucide-react';
 import InteractiveGrid from './components/InteractiveGrid';
 import GridVisualization from './components/GridVisualization'; 
-
+import AnimationShowcase from './components/AnimationShowcase'
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeAudio, setActiveAudio] = useState(null);
@@ -205,10 +205,6 @@ const Portfolio = () => {
                     <p className="text-white font-mono text-sm">BS COMPUTER SCIENCE --- UNC Chapel Hill</p>
                     <p className="text-gray-400 text-xs">2021 - 2025 (Expected)</p>
                   </div>
-                  <div> 
-                    <p className="text-white font-mono text-sm">Music Minor</p>
-                    <p className="text-gray-400 text-xs">2021 - 2025 (Expected)</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -223,7 +219,63 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+        
+      {/* Projects Title Band */}
+      <section className="border-b border-gray-800 bg-black py-8">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="font-mono text-2xl tracking-wider text-center">PERSONAL PROJECTS</h2>
+        </div>
+      </section>
+      
+      {/* Project 1: Game Dev (Left) + Interactive Grid (Right) */}
+      <section className="border-b border-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="h-120 relative overflow-hidden">
+            <InteractiveGrid 
+              gridSize={gridSize}
+              layerId={3}
+              onCellUpdate={handleLayerUpdate}
+              className="w-full h-full"
+            />
+          </div>
+          <div className="p-8 flex flex-col justify-between md:border-r border-gray-800">
+            <div>
+              <h2 className="font-mono text-xl mb-6">GAME DEVELOPMENT</h2>
+              <p className="text-gray-400 mb-4">
+                A work-in-progress game featuring custom animations and visuals. This project demonstrates my ability to combine creative design with technical implementation.
+              </p>
+              <p className="text-gray-400 mb-4">
+                The game explores concepts of time and space, with mechanics that challenge conventional movement and interaction patterns.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-800">
+              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">UNITY</span>
+              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">C#</span>
+              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">SHADER PROGRAMMING</span>
+              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">ANIMATION</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* Project 2: Interactive Grid (Left) + Blank Showcase (Right) */}
+      <section className="border-b border-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="md:border-l border-gray-800">
+            <AnimationShowcase />
+          </div>
+          <div className="h-120 relative overflow-hidden">
+            <InteractiveGrid 
+              gridSize={gridSize}
+              layerId={4}
+              onCellUpdate={handleLayerUpdate}
+              className="w-full h-full"
+            />
+          </div>
+        </div>
+      </section>
+
+          
       {/* Game Dev Section - Info Block */}
       <section id="game-dev" className="border-b border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2">

@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+.pixel-art {
+  /* For Chrome, Safari, Edge */
+  image-rendering: pixelated;
+  /* For Firefox */
+  image-rendering: -moz-crisp-edges;
+  /* Fallback */
+  image-rendering: crisp-edges;
+  
+  /* Make the animation larger */
+  width: 75%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  background-color: transparent;
+}
