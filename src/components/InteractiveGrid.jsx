@@ -25,8 +25,8 @@ const InteractiveGrid = ({
   const gridHeight = cellSize * gridSize.rows;
 
   // Calculate centering offsets
-  const offsetX = (dimensions.width - gridWidth) / 2;
-  const offsetY = (dimensions.height - gridHeight) / 2;
+  const offsetX = (dimensions.width - gridWidth)/2.5;
+  const offsetY = (dimensions.height - gridHeight)/2.5;
 
   useEffect(() => {
     const updateDimensions = () => {

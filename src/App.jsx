@@ -4,6 +4,9 @@ import InteractiveGrid from './components/InteractiveGrid';
 import GridVisualization from './components/GridVisualization'; 
 import AnimationShowcase from './components/AnimationShowcase';
 import VideoPlayer from './components/VideoPlayer';
+import AudioSection from './components/AudioSection';
+import AshrakaaSection from './components/AshrakaaSection';
+
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeAudio, setActiveAudio] = useState(null);
@@ -15,7 +18,9 @@ const Portfolio = () => {
   const [layers, setLayers] = useState([
     { id: 0, cells: [] },  // Hero grid
     { id: 1, cells: [] },  // Technical grid
-    { id: 2, cells: [] }   // Creative grid
+    { id: 2, cells: [] },  // Creative grid
+    { id: 3, cells: [] },  // Project 1 grid
+    { id: 4, cells: [] }   // Project 2 grid
   ]);
 
   // Function to handle cell updates in grids
@@ -91,12 +96,6 @@ const Portfolio = () => {
       {/* Hero Grid Section - Taller */}
       <section className="pt-16 border-b border-gray-800">
         <div className="h-64 relative overflow-hidden">
-          <InteractiveGrid 
-            gridSize={gridSize}
-            layerId={0}
-            onCellUpdate={handleLayerUpdate}
-            className="w-full h-full"
-          />
           <div className="absolute inset-0 flex items-center justify-center">
             <h1 className="font-mono text-2xl tracking-wider bg-black bg-opacity-50 px-6 py-2">
               NOAH WEAVER
@@ -124,6 +123,7 @@ const Portfolio = () => {
                 <li>Computer Science</li>
                 <li>Web Devlopment</li>
                 <li>Python</li>
+                <li>NLP</li>
               </ul>
             </div>
             <div className="border border-gray-800 p-4">
@@ -132,7 +132,7 @@ const Portfolio = () => {
                 <li>Music</li>
                 <li>Games</li>
                 <li>Ashrakaa</li>
-                <li>Wizardry</li>
+
               </ul>
             </div>
             <div className="border border-gray-800 p-4 col-span-1 md:col-span-2">
@@ -213,7 +213,7 @@ const Portfolio = () => {
           <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
               gridSize={gridSize}
-              layerId={1}
+              layerId={4}
               onCellUpdate={handleLayerUpdate}
               className="w-full h-full"
             />
@@ -241,17 +241,17 @@ const Portfolio = () => {
           </div>
           <div className="p-8 flex flex-col justify-between md:border-r border-gray-800">
             <div>
-              <h2 className="font-mono text-xl mb-6">GAME DEVELOPMENT</h2>
+              <h2 className="font-mono text-xl mb-6">DDDUAL!!!</h2>
               <p className="text-gray-400 mb-4">
-                A work-in-progress game featuring custom animations and visuals. This project demonstrates my ability to combine creative design with technical implementation.
+                A work-in-progress game featuring custom animations and visuals. I'm building this project alone, from scratch, using purely python.
               </p>
               <p className="text-gray-400 mb-4">
-                The game explores concepts of time and space, with mechanics that challenge conventional movement and interaction patterns.
+                I set out to create DDDUAL in the interest of exploring modular game design. The goal is to allow players to create their own characters, abilities, and environments.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-800">
-              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">UNITY</span>
-              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">C#</span>
+              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">PYTHON</span>
+              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">PYGAME</span>
               <span className="px-2 py-1 border border-gray-700 text-xs font-mono">SHADER PROGRAMMING</span>
               <span className="px-2 py-1 border border-gray-700 text-xs font-mono">ANIMATION</span>
             </div>
@@ -268,7 +268,7 @@ const Portfolio = () => {
           <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
               gridSize={gridSize}
-              layerId={4}
+              layerId={2}
               onCellUpdate={handleLayerUpdate}
               className="w-full h-full"
             />
@@ -283,86 +283,64 @@ const Portfolio = () => {
 
           <div className="p-8 flex flex-col justify-between md:border-r border-gray-800">
             <div>
-              <h2 className="font-mono text-xl mb-6">GAME DEVELOPMENT</h2>
+              <h2 className="font-mono text-xl mb-6">ABOUT DDDUAL</h2>
               <p className="text-gray-400 mb-4">
-                A work-in-progress game featuring custom animations and visuals. This project demonstrates my ability to combine creative design with technical implementation.
+                DDDUAL is a top down turn based strategy game. The basic concept is that players will secretly declare what moves they make, then once everyone is ready, actions occur simultaniously.
               </p>
               <p className="text-gray-400 mb-4">
-                The game explores concepts of time and space, with mechanics that challenge conventional movement and interaction patterns.
+                This simple concept serves as the foundation for highly creative character design. Ormis, for instance, can essentially perform mitosis resulting in identicle copies strewn through large zones of the map.
               </p>
-            </div>
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-800">
-              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">UNITY</span>
-              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">C#</span>
-              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">SHADER PROGRAMMING</span>
-              <span className="px-2 py-1 border border-gray-700 text-xs font-mono">ANIMATION</span>
+              <p className="text-gray-400 mb-4">
+                This rough pre-Alpha demo has temperary ui and assets. It demonstrates what a turn might look like.
+              </p>
             </div>
           </div>
-          <VideoPlayer/>
+          <VideoPlayer src="/videos/demo.mp4" />
         </div>
       </section>
       
       {/* Creative Section - Grid Block */}
+      {/* Creative Section - Grid with Visual Interaction */}
       <section id="creative" className="border-b border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
               gridSize={gridSize}
-              layerId={2}
+              layerId={1}
               onCellUpdate={handleLayerUpdate}
               className="w-full h-full"
             />
           </div>
           <div className="p-8 md:border-l border-gray-800">
-            <h2 className="font-mono text-xl mb-6">CREATIVE PROJECTS</h2>
-            
-            <div className="mb-8">
-              <h3 className="font-mono text-sm mb-3">MUSIC</h3>
-              <p className="text-gray-400 mb-4">
-                Original compositions across different genres, showcasing my approach to music creation and production.
+          <h2 className="font-mono text-xl mb-6">Looking Forward...</h2>
+
+            <p className="text-gray-400 mb-4">Future goals include:</p>
+
+            <ul className="list-disc pl-5 text-gray-400 space-y-2 mb-6">
+              <li>Implementing functional online play with multiplayer capabilities</li>
+              <li>Building custom UI elements</li>
+              <li>Creating new characters with distinctive abilities and animations</li>
+              <li>Expanding the game world with a single player/coop campaign</li>
+              <li>Refining gameplay mechanics based on user feedback</li>
+            </ul>
+
+            <div className="border-l-2 border-gray-700 pl-4 my-8">
+              <p className="text-gray-300 italic">
+                "Creativity is intelligence having fun."
               </p>
-              <div className="space-y-3 mt-4">
-                {[1, 2, 3].map((track) => (
-                  <div key={track} className="border border-gray-800 p-3 flex justify-between items-center">
-                    <div className="flex items-center">
-                      <button 
-                        onClick={() => toggleAudio(`track-${track}`)}
-                        className="w-8 h-8 flex items-center justify-center border border-gray-700 mr-4 hover:bg-gray-900"
-                      >
-                        <span className="text-xs font-mono">
-                          {activeAudio === `track-${track}` ? '■' : '▶'}
-                        </span>
-                      </button>
-                      <span className="font-mono text-sm">TRACK_{track}</span>
-                      <audio
-                        ref={el => audioRefs.current[`track-${track}`] = el}
-                        src={`/placeholder-audio-${track}.mp3`}
-                        onEnded={() => setActiveAudio(null)}
-                      />
-                    </div>
-                    <span className="text-gray-500 text-xs font-mono">2:3{track}</span>
-                  </div>
-                ))}
-              </div>
+              <p className="text-gray-500 mt-2 text-sm">— Albert Einstein</p>
             </div>
+
             
-            <div>
-              <div className="flex items-center mb-3">
-                <h3 className="font-mono text-sm">ASHRAKAA WORLDBUILDING</h3>
-                <span className="ml-3 text-xs font-mono px-2 py-1 border border-gray-700">COMING SOON</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                A progressive worldbuilding project set on a tidally locked planet of ice and fire, exploring unique environmental conditions and resulting societal adaptations.
-              </p>
-              <div className="border-l-2 border-gray-800 pl-4 my-4">
-                <p className="text-gray-400 italic text-sm">
-                  "On Ashrakaa, civilization exists in the twilight ring between eternal day and endless night..."
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
+      
+      {/* Audio Section - New Dedicated Section */}
+      <AudioSection />
+      
+      {/* Ashrakaa Section - Brief band */}
+      <AshrakaaSection />
 
       {/* 3D Visualization Section */}
       <section className="border-b border-gray-800">
@@ -372,7 +350,7 @@ const Portfolio = () => {
             Interact with the grids above to see your creation visualized in 3D space
           </p>
           <p className="text-gray-500 text-xs mt-1">
-            Red = X-axis, Green = Y-axis, Blue = Z-axis (height)
+
           </p>
         </div>
         <div className="h-120 w-full">
@@ -387,15 +365,15 @@ const Portfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="border-b border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-3">
-          <a href="mailto:your.email@example.com" className="flex flex-col items-center justify-center py-16 md:border-r border-gray-800 hover:bg-gray-900 transition-colors">
+          <a href="mailto:noahgweaver@gmail.com" className="flex flex-col items-center justify-center py-16 md:border-r border-gray-800 hover:bg-gray-900 transition-colors">
             <Mail size={24} className="mb-3" />
             <span className="font-mono text-sm">EMAIL</span>
           </a>
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center py-16 md:border-r border-gray-800 hover:bg-gray-900 transition-colors">
+          <a href="https://github.com/NoahWeaves" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center py-16 md:border-r border-gray-800 hover:bg-gray-900 transition-colors">
             <Github size={24} className="mb-3" />
             <span className="font-mono text-sm">GITHUB</span>
           </a>
-          <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center py-16 hover:bg-gray-900 transition-colors">
+          <a href="https://www.linkedin.com/in/noah-weaver-45b698155/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center py-16 hover:bg-gray-900 transition-colors">
             <Linkedin size={24} className="mb-3" />
             <span className="font-mono text-sm">LINKEDIN</span>
           </a>

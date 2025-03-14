@@ -1,0 +1,117 @@
+{ "frames": [
+   {
+    "filename": "Zap! 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 1.aseprite",
+    "frame": { "x": 71, "y": 0, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 2.aseprite",
+    "frame": { "x": 142, "y": 0, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 3.aseprite",
+    "frame": { "x": 213, "y": 0, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 4.aseprite",
+    "frame": { "x": 0, "y": 64, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 5.aseprite",
+    "frame": { "x": 71, "y": 64, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 6.aseprite",
+    "frame": { "x": 142, "y": 64, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 7.aseprite",
+    "frame": { "x": 213, "y": 64, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 8.aseprite",
+    "frame": { "x": 0, "y": 128, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 9.aseprite",
+    "frame": { "x": 71, "y": 128, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "Zap! 10.aseprite",
+    "frame": { "x": 71, "y": 128, "w": 71, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 71, "h": 64 },
+    "sourceSize": { "w": 71, "h": 64 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.10.1-x64",
+  "image": "Zap!.png",
+  "format": "RGBA8888",
+  "size": { "w": 284, "h": 192 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 2", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

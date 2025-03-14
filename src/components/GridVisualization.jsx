@@ -134,7 +134,8 @@ const GridVisualization = ({
     cubesRef.current = [];
 
     // Create even larger cubes
-    const cubeSize = 2.0; // Large cube size
+    const scalingFactor = 1;
+    const cubeSize = 1.0 * scalingFactor; // Large cube size
     const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
     
     // Half the cube dimension for offset
@@ -156,9 +157,9 @@ const GridVisualization = ({
         
         // Position cube with offset in all three dimensions
         cube.position.set(
-          col + halfCube,       // X position + half cube size
-          halfCube + layerIndex * cubeSize, // Y position with half-cube offset from ground, stacking by full cube heights
-          row + halfCube        // Z position + half cube size
+          col * scalingFactor + halfCube,  // X position with scaling
+          halfCube + layerIndex * cubeSize, // Y position (height)
+          row * scalingFactor + halfCube    // Z position with scaling
         );
 
         sceneRef.current.add(cube);

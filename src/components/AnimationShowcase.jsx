@@ -3,24 +3,57 @@ import AnimationPlayer from './AnimationPlayer';
 
 // Animation configuration with proper filenames
 const animationsConfig = [
+{
+        id: 'hero-idle',
+        title: 'HERO IDLE',
+        jsonFile: 'Hero!-idle.json',    // Update these filenames to match your actual files
+        imageFile: 'Hero!-idle.png'
+    },
+    {
+        id: 'hero-attack',
+        title: 'HERO ATTACK',
+        jsonFile: 'Hero!-zap.json',  // Update these filenames to match your actual files
+        imageFile: 'Hero!-zap.png'
+      },
   {
     id: 'hero-death',
-    title: 'DEATH ANIMATION',
+    title: 'HERO DEATH',
     jsonFile: 'Hero!-death.json',
     imageFile: 'Hero!-death.png'
   },
   {
-    id: 'hero-attack',
-    title: 'ATTACK ANIMATION',
-    jsonFile: 'Hero!-zap.json',  // Update these filenames to match your actual files
-    imageFile: 'Hero!-zap.png'
+    id: 'ormis-idle',
+    title: 'ORMIS IDLE',
+    jsonFile: 'Ormis-idle.json',  // Update these filenames to match your actual files
+    imageFile: 'Ormis-idle.png'
   },
   {
-    id: 'hero-idle',
-    title: 'IDLE ANIMATION',
-    jsonFile: 'Hero!-idle.json',    // Update these filenames to match your actual files
-    imageFile: 'Hero!-idle.png'
-  }
+    id: 'ormis-attack',
+    title: 'ORMIS ATTACK',
+    jsonFile: 'Ormis-attack.json',  // Update these filenames to match your actual files
+    imageFile: 'Ormis-attack.png'
+  },
+  {
+    id: 'ormis-split',
+    title: 'ORMIS SPLIT',
+    jsonFile: 'Ormis-split.json',  // Update these filenames to match your actual files
+    imageFile: 'Ormis-split.png'
+  },
+  {
+    id: 'ormis-death',
+    title: 'ORMIS DEATH',
+    jsonFile: 'Ormis-death.json',  // Update these filenames to match your actual files
+    imageFile: 'Ormis-death.png'
+  },
+  {
+    id: 'pitma ',
+    title: 'PITMAN (a friends creation)',
+    jsonFile: 'pitman-idle.json',  // Update these filenames to match your actual files
+    imageFile: 'pitman-idle.png'
+  },
+
+
+
 ];
 
 const AnimationShowcase = () => {
