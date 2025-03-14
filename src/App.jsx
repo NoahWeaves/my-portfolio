@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Github, Linkedin, Mail, Menu, X, Music, Gamepad2, Book } from 'lucide-react';
 import InteractiveGrid from './components/InteractiveGrid';
 import GridVisualization from './components/GridVisualization'; 
-import AnimationShowcase from './components/AnimationShowcase'
+import AnimationShowcase from './components/AnimationShowcase';
+import VideoPlayer from './components/VideoPlayer';
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeAudio, setActiveAudio] = useState(null);
@@ -279,13 +280,7 @@ const Portfolio = () => {
       {/* Game Dev Section - Info Block */}
       <section id="game-dev" className="border-b border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="aspect-square overflow-hidden md:order-1">
-            <img 
-              src="/api/placeholder/800/800" 
-              alt="Game Development" 
-              className="w-full h-full object-cover grayscale"
-            />
-          </div>
+
           <div className="p-8 flex flex-col justify-between md:border-r border-gray-800">
             <div>
               <h2 className="font-mono text-xl mb-6">GAME DEVELOPMENT</h2>
@@ -303,6 +298,7 @@ const Portfolio = () => {
               <span className="px-2 py-1 border border-gray-700 text-xs font-mono">ANIMATION</span>
             </div>
           </div>
+          <VideoPlayer/>
         </div>
       </section>
       
