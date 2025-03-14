@@ -113,32 +113,31 @@ const Portfolio = () => {
               I'm a computer science student with a passion for creating across multiple disciplines. My approach combines technical precision with creative vision.
             </p>
             <p className="text-gray-400">
-              Currently pursuing advanced studies in computer science, I've qualified for an accelerated MS program. My technical background is complemented by my creative endeavors in game development, music composition, and worldbuilding.
+              Currently pursuing advanced studies in computer science. My technical background is complemented by my creative endeavors.
             </p>
           </div>
           <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="border border-gray-800 p-4">
               <h3 className="font-mono text-sm mb-2">TECHNICAL</h3>
               <ul className="text-gray-400 text-sm space-y-1">
-                <li>Software Development</li>
-                <li>Game Programming</li>
-                <li>C# / Python / JS</li>
-                <li>Interactive Systems</li>
+                <li>Computer Science</li>
+                <li>Web Devlopment</li>
+                <li>Python</li>
               </ul>
             </div>
             <div className="border border-gray-800 p-4">
               <h3 className="font-mono text-sm mb-2">CREATIVE</h3>
               <ul className="text-gray-400 text-sm space-y-1">
-                <li>Music Composition</li>
-                <li>Game Design</li>
-                <li>Worldbuilding</li>
-                <li>Narrative Design</li>
+                <li>Music</li>
+                <li>Games</li>
+                <li>Ashrakaa</li>
+                <li>Wizardry</li>
               </ul>
             </div>
             <div className="border border-gray-800 p-4 col-span-1 md:col-span-2">
               <h3 className="font-mono text-sm mb-2">APPROACH</h3>
               <p className="text-gray-400 text-sm">
-                I exist at the intersection of logic and imagination—creating systems and worlds with equal enthusiasm. My work reflects this duality: structured yet inventive, technical yet expressive.
+                I pursue the intersection of logic and imagination.
               </p>
             </div>
           </div>
@@ -157,33 +156,45 @@ const Portfolio = () => {
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">Python</span>
                     <div className="w-24 bg-gray-800 h-1">
+                      <div className="bg-white h-1 w-15"></div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Webstacks(react, js, node, npm, sql...)</span>
+                    <div className="w-24 bg-gray-800 h-1">
                       <div className="bg-white h-1 w-20"></div>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400">JavaScript</span>
+                    <span className="text-gray-400">C/Java/C#/Assembly</span>
                     <div className="w-24 bg-gray-800 h-1">
-                      <div className="bg-white h-1 w-16"></div>
+                      <div className="bg-white h-1 w-12"></div>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400">C#</span>
+                    <span className="text-gray-400">Verilog</span>
                     <div className="w-24 bg-gray-800 h-1">
-                      <div className="bg-white h-1 w-18"></div>
+                      <div className="bg-white h-1 w-10"></div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">01000010 01101001 01101110 01100001 01110010 01111001</span>
+                    <div className="w-24 bg-gray-800 h-1">
+                      <div className="bg-white h-1 w-0"></div>
                     </div>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h3 className="font-mono text-sm mb-3">TECHNOLOGIES</h3>
+                <h3 className="font-mono text-sm mb-3">AREAS STUDIED</h3>
                 <div className="grid grid-cols-2 gap-2">
-                  <span className="text-gray-400 text-sm">React</span>
-                  <span className="text-gray-400 text-sm">Unity</span>
-                  <span className="text-gray-400 text-sm">Node.js</span>
-                  <span className="text-gray-400 text-sm">SQL</span>
-                  <span className="text-gray-400 text-sm">Git</span>
-                  <span className="text-gray-400 text-sm">TailwindCSS</span>
+                  <span className="text-gray-400 text-sm">NLP Archetecture</span>
+                  <span className="text-gray-400 text-sm">Web Development</span>
+                  <span className="text-gray-400 text-sm">Robotics</span>
+                  <span className="text-gray-400 text-sm">Machine Learning</span>
+                  <span className="text-gray-400 text-sm">CPU Design</span>
+                  <span className="text-gray-400 text-sm">Git :D</span>
                 </div>
               </div>
               
@@ -191,11 +202,11 @@ const Portfolio = () => {
                 <h3 className="font-mono text-sm mb-3">EDUCATION</h3>
                 <div className="space-y-2">
                   <div>
-                    <p className="text-white font-mono text-sm">MS PROGRAM (ACCELERATED)</p>
-                    <p className="text-gray-400 text-xs">2025 - 2026 (Expected)</p>
+                    <p className="text-white font-mono text-sm">BS COMPUTER SCIENCE --- UNC Chapel Hill</p>
+                    <p className="text-gray-400 text-xs">2021 - 2025 (Expected)</p>
                   </div>
-                  <div>
-                    <p className="text-white font-mono text-sm">BS COMPUTER SCIENCE</p>
+                  <div> 
+                    <p className="text-white font-mono text-sm">Music Minor</p>
                     <p className="text-gray-400 text-xs">2021 - 2025 (Expected)</p>
                   </div>
                 </div>
