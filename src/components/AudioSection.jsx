@@ -53,7 +53,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track7',
     title: 'Hurricane',
     description: 'sparkly, dreamlike, guitar',
     src: '/audio/Download-203.mp3',
@@ -61,7 +61,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track8',
     title: 'all_or_nothing',
     description: 'inspiring, piano, explicit',
     src: '/audio/Download-206.mp3',
@@ -69,7 +69,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track9',
     title: 'goin_or_stayin',
     description: 'sweet, country, guitar',
     src: '/audio/Download-207.mp3',
@@ -77,7 +77,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track10',
     title: 'river_song',
     description: 'philisophical, ethereal, guitar',
     src: '/audio/Download-208.mp3',
@@ -85,7 +85,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track11',
     title: 'high_school_drama',
     description: 'melodrama, punky, guitar',
     src: '/audio/Download-211.mp3',
@@ -93,7 +93,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track12',
     title: 'had_it_coming',
     description: 'rocky, sassy, guitar',
     src: '/audio/Download-212.mp3',
@@ -101,7 +101,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track13',
     title: 'otherwise_nevermind',
     description: 'soulful, breakup, guitar',
     src: '/audio/Download-213.mp3',
@@ -109,7 +109,7 @@ const defaultAudioTracks = [
     liked: false
   },
   {
-    id: 'track6',
+    id: 'track14',
     title: 'untitled',
     description: 'short, piano',
     src: '/audio/Download.mp3',
