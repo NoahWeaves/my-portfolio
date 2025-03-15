@@ -67,7 +67,8 @@ const Portfolio = () => {
             <div className="hidden md:flex space-x-8">
               <a href="#about" className="font-mono text-sm hover:text-gray-400 transition-colors">ABOUT</a>
               <a href="#technical" className="font-mono text-sm hover:text-gray-400 transition-colors">TECHNICAL</a>
-              <a href="#creative" className="font-mono text-sm hover:text-gray-400 transition-colors">CREATIVE</a>
+              <a href="#projects" className="font-mono text-sm hover:text-gray-400 transition-colors">PROJECTS</a>
+              <a href="#music" className="font-mono text-sm hover:text-gray-400 transition-colors">MUSIC</a>
               <a href="#contact" className="font-mono text-sm hover:text-gray-400 transition-colors">CONTACT</a>
             </div>
 
@@ -222,7 +223,7 @@ const Portfolio = () => {
       </section>
         
       {/* Projects Title Band */}
-      <section className="border-b border-gray-800 bg-black py-8">
+      <section id="projects" className="border-b border-gray-800 bg-black py-8">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="font-mono text-2xl tracking-wider text-center">PERSONAL PROJECTS</h2>
         </div>
@@ -301,7 +302,7 @@ const Portfolio = () => {
       
       {/* Creative Section - Grid Block */}
       {/* Creative Section - Grid with Visual Interaction */}
-      <section id="creative" className="border-b border-gray-800">
+      <section className="border-b border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="h-120 relative overflow-hidden">
             <InteractiveGrid 
@@ -337,7 +338,8 @@ const Portfolio = () => {
       </section>
       
       {/* Audio Section - New Dedicated Section */}
-      <AudioSection />
+      <section id="music"></section>
+      <AudioSection/>
       
       {/* Ashrakaa Section - Brief band */}
       <AshrakaaSection />

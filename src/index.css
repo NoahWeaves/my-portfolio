@@ -12,3 +12,13 @@
     display: block;
     margin: 0 auto;
   }
+
+  html {
+    scroll-padding-top: 0rem; /* Adjust this value based on your navbar height */
+    scroll-behavior: auto;
+  }
+  
+  /* This ensures section targets have enough space at the top */
+  section[id] {
+    scroll-margin-top: 4rem; /* Should match the scroll-padding-top value */
+  }
